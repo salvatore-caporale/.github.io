@@ -5,24 +5,88 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Salvatore Caporale — Card NFC</title>
   <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial; padding: 28px; max-width:700px; margin:auto; color:#111 }
-    .card{ border-radius:12px; padding:20px; box-shadow:0 6px 22px rgba(0,0,0,.08) }
-    h1{ margin:0 0 8px 0; font-size:22px }
-    p{ margin:6px 0 }
-    .btn{ display:inline-block; margin-top:12px; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.06) }
+    body {
+      font-family: system-ui, -apple-system, Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f4ff, #ffffff);
+      color: #222;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    .card {
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      background: white;
+      text-align: center;
+    }
+    .card img {
+      width: 180px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    h1 {
+      font-size: 28px;
+      margin: 10px 0 5px 0;
+      color: #004080;
+    }
+    h2 {
+      font-size: 20px;
+      margin: 20px 0 10px;
+      color: #0066cc;
+    }
+    p {
+      margin: 6px 0;
+      line-height: 1.4;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      background: #004080;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #0066cc;
+    }
+    .section {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #e6f0ff;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Salvatore Caporale</h1>
-    <p><strong>Ruolo:</strong> Head of Middle East Operations Services — Leonardo Helicopters</p>
-    <p><strong>Email:</strong> salvatore@example.com</p>
-    <p><strong>Telefono:</strong> +974 5055 3691</p>
-    <p><strong>Link professionale:</strong> <a href="https://www.linkedin.com/in/salvatore-caporale">LinkedIn</a></p>
-    <p>Breve bio: Senior flight instructor, examiner, and VP operations specialist. 7000+ ore volo.</p>
-    <a class="btn" href="/Salvatore.vcf" download>Scarica vCard (.vcf)</a>
-    <img src="images/foto.jpeg" alt="Foto di Salvatore Caporale" style="width:180px; border-radius:50%; margin-bottom:15px;">
+  <div class="container">
+    <div class="card">
+      <img src="images/foto.jpg" alt="Foto di Salvatore Caporale">
+      <h1>Salvatore Caporale</h1>
+      <p><strong>Ruolo:</strong> Head of Middle East Operations Services — Leonardo Helicopters</p>
+      <p><strong>Email:</strong> salvatore@example.com</p>
+      <p><strong>Telefono:</strong> +974 50553691</p>
+      <p><a href="https://www.linkedin.com/in/salvatorecaporale" target="_blank">🌐 LinkedIn</a></p>
+      <a class="btn" href="/Salvatore.vcf" download>📇 Scarica Contatto</a>
+    </div>
+
+    <div class="section">
+      <h2>Esperienza</h2>
+      <ul>
+        <li>7000+ ore di volo</li>
+        <li>Senior Flight Instructor & Examiner</li>
+        <li>Gestione VIP e Head of State operations</li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
-
