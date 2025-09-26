@@ -3,92 +3,135 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Salvatore Caporale — Card NFC</title>
+  <title>Salvatore Caporale — Digital Card</title>
+  <meta name="description" content="Salvatore Caporale — Head of Middle East Operations Services — Leonardo Helicopters">
+  <meta name="theme-color" content="#0a4dad">
   <style>
+    :root {
+      --bg: #f6f8ff;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --primary: #0a4dad;
+      --primary-2: #1e6bfd;
+      --accent: #e6f0ff;
+      --shadow: 0 10px 30px rgba(0,0,0,.12);
+      --radius: 18px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115;
+        --card: #151922;
+        --text: #e5e7eb;
+        --muted: #b4bdc6;
+        --primary: #3b82f6;
+        --primary-2: #60a5fa;
+        --accent: #1c2433;
+        --shadow: 0 10px 30px rgba(0,0,0,.5);
+      }
+    }
     body {
-      font-family: system-ui, -apple-system, Roboto, sans-serif;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f0f4ff, #ffffff);
-      color: #222;
+      font-family: system-ui, -apple-system, Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--bg), #ffffff0d);
+      color: var(--text);
     }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
-    .card {
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.1);
-      background: white;
-      text-align: center;
-    }
-    .card img {
-      width: 180px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.1);
-    }
-    h1 {
-      font-size: 28px;
-      margin: 10px 0 5px 0;
-      color: #004080;
-    }
-    h2 {
-      font-size: 20px;
-      margin: 20px 0 10px;
-      color: #0066cc;
-    }
-    p {
-      margin: 6px 0;
-      line-height: 1.4;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      color: white;
-      background: #004080;
-      transition: 0.2s;
-    }
-    .btn:hover {
-      background: #0066cc;
-    }
-    .section {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      background: #e6f0ff;
-      text-align: left;
+    .container { max-width: 900px; margin: 0 auto; padding: 28px 18px; }
+    .logo { display:block; margin: 0 auto 20px; max-height:70px; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; margin-bottom: 24px; }
+    .top { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: center; }
+    .avatar { width:120px; height:120px; border-radius: 999px; object-fit: cover; background: var(--accent); box-shadow: 0 6px 16px #00000022; }
+    h1 { font-size: 28px; margin: 0 0 6px; }
+    .role { margin: 0 0 12px; color: var(--muted); }
+    .actions { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:12px; margin-top: 22px; }
+    .btn { display:flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:12px; text-decoration:none; color:white; background: var(--primary); font-weight:600; transition: transform .06s ease, background .2s; }
+    .btn:hover { background: var(--primary-2); transform: translateY(-1px); }
+    .btn.gray { background: #374151; }
+    .btn.green { background: #0b7a6b; }
+    h2 { margin-top: 0; color: var(--primary); }
+    p { line-height: 1.5; }
+    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .chip { background: var(--accent); padding:6px 12px; border-radius:999px; font-size:14px; }
+    .list { list-style: none; padding: 0; margin: 0; }
+    .list li { padding: 6px 0; border-bottom: 1px dashed #00000014; }
+    .list li:last-child { border-bottom: none; }
+    .qr-box { display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .qr { width: 200px; height: 200px; border-radius: 12px; }
+    footer { text-align:center; color: var(--muted); font-size: 13px; margin: 22px 0 10px; }
+    @media (max-width: 720px) {
+      .top { grid-template-columns: 1fr; text-align:center; }
+      .avatar { margin: 0 auto; }
     }
   </style>
 </head>
 <body>
   <div class="container">
+
+    <!-- LOGO -->
+    <img class="logo" src="/logo.png" alt="Logo" onerror="this.style.display='none'">
+
+    <!-- CARD PRINCIPALE -->
     <div class="card">
-      <!-- Foto in root -->
-      <img src="/foto.jpg" alt="Foto di Salvatore Caporale">
-      <h1>Salvatore Caporale</h1>
-      <p><strong>Ruolo:</strong> Head of Middle East Operations Services — Leonardo Helicopters</p>
-      <p><strong>Email:</strong> salvatore.caporale@leonardo.com</p>
-      <p><strong>Email:</strong> s.caporale@yahoo.it</p>
-      <p><strong>Telefono:</strong> +974 50553691</p>
-      <p><a href="https://www.linkedin.com/in/salvatorecaporale" target="_blank">🌐 LinkedIn</a></p>
-      <a class="btn" href="/Salvatore.vcf" download>📇 Scarica Contatto</a>
+      <div class="top">
+        <img class="avatar" src="/foto.jpg" alt="Foto profilo" onerror="this.style.opacity=0.2;">
+        <div>
+          <h1>Salvatore Caporale</h1>
+          <p class="role">Head of Middle East Operations Services — Leonardo Helicopters</p>
+          <div class="actions">
+            <a class="btn" href="tel:+97450553691">📞 Chiama</a>
+            <a class="btn gray" href="mailto:salvatore@example.com">✉️ Email</a>
+            <a class="btn green" href="https://wa.me/97450553691" target="_blank">💬 WhatsApp</a>
+            <a class="btn" href="/Salvatore.vcf" download>📇 vCard</a>
+            <a class="btn gray" href="https://www.linkedin.com/in/salvatorecaporale" target="_blank">in LinkedIn</a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="section">
+    <!-- BIOGRAFIA -->
+    <div class="card">
+      <h2>Biografia</h2>
+      <p>Senior Flight Instructor & Examiner con oltre 7000 ore di volo e una carriera ventennale in aviazione civile e militare. Specializzato in operazioni VIP/Head of State e nella gestione di training e MRO in contesti internazionali.</p>
+    </div>
+
+    <!-- ESPERIENZA -->
+    <div class="card">
       <h2>Esperienza</h2>
-      <ul>
-        <li>7000+ ore di volo</li>
-        <li>Senior Flight Instructor & Examiner</li>
-        <li>Gestione VIP e Head of State operations</li>
+      <ul class="list">
+        <li>Head of Middle East Operations Services — Leonardo Helicopters</li>
+        <li>Senior Flight Instructor & Examiner — AW139, AW169, AW189</li>
+        <li>Ex Ufficiale Aviazione Militare — Special Ops Helicopter Units</li>
       </ul>
     </div>
+
+    <!-- COMPETENZE -->
+    <div class="card">
+      <h2>Competenze</h2>
+      <div class="chips">
+        <span class="chip">🚁 Helicopter Training</span>
+        <span class="chip">📊 Business Management</span>
+        <span class="chip">🤝 Negotiation</span>
+        <span class="chip">🌍 International Relations</span>
+        <span class="chip">🛠️ MRO & Support</span>
+      </div>
+    </div>
+
+    <!-- SOCIAL & LINKS -->
+    <div class="card">
+      <h2>Social & Links</h2>
+      <ul class="list">
+        <li><a href="https://www.linkedin.com/in/salvatorecaporale" target="_blank">LinkedIn</a></li>
+        <li><a href="https://salvatore-caporale.github.io" target="_blank">Sito personale</a></li>
+      </ul>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="card qr-box">
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://salvatore-caporale.github.io" alt="QR code">
+      <div>Scansiona per aprire questa card</div>
+    </div>
+
+    <footer>© Salvatore Caporale</footer>
   </div>
 </body>
 </html>
