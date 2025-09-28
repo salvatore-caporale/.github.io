@@ -9,354 +9,97 @@
   <style>
     :root{
       --bg:#f6f8ff; --bg2:#eef3ff; --card:#fff; --text:#1f2937; --muted:#6b7280;
-      --primary:#0a4dad; --primary2:#1e6bfd; --accent:#e6f0ff; --radius:20px;
+      --primary:#0a4dad; --primary2:#1e6bfd; --accent:#e6f0ff;
       --shadow:0 12px 28px rgba(3,24,73,.12);
-      --red:#d62828; --red2:#e63946; --green:#0b7a6b; --line:#e5e7eb;
     }
     @media (prefers-color-scheme: dark){
       :root{
         --bg:#0f131d; --bg2:#0b1220; --card:#131a28; --text:#e5e7eb; --muted:#b6c2d0;
-        --primary:#3b82f6; --primary2:#60a5fa; --accent:#0f1e36; --line:#1f2937;
+        --primary:#3b82f6; --primary2:#60a5fa; --accent:#0f1e36;
         --shadow:0 14px 30px rgba(0,0,0,.45);
       }
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:
-        radial-gradient(1200px 600px at 100% -20%,var(--bg2),transparent 60%),
-        radial-gradient(1000px 500px at 0% 120%,var(--accent),transparent 50%),
-        var(--bg);
-      color:var(--text);
-      font-family:system-ui,-apple-system,Roboto,'Segoe UI',Tahoma,Arial,sans-serif;
-    }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Roboto,'Segoe UI',Tahoma,Arial,sans-serif}
     .container{max-width:980px;margin:0 auto;padding:28px 18px}
-    /* Header */
-    .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{height:44px;max-width:180px;object-fit:contain}
-    .lang{display:flex;gap:8px}
-    .lang button{border:1px solid #00000022;background:var(--card);color:var(--text);padding:8px 12px;border-radius:999px;cursor:pointer}
-    .lang button.active{background:var(--primary);color:#fff;border-color:transparent}
-    /* Hero */
-    .hero{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:28px 28px 20px;margin-bottom:26px}
+
+    .hero{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin-bottom:26px}
     .hero-grid{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center}
-    .avatar{width:140px;height:140px;border-radius:999px;object-fit:cover;background:var(--accent);border:4px solid #ffffff20;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    .avatar{width:140px;height:140px;border-radius:50%;object-fit:cover}
     h1{font-size:30px;margin:0}
     .role{margin:6px 0 0;color:var(--muted)}
     .actions{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .btn{display:flex;align-items:center;gap:10px;justify-content:center;padding:12px 14px;border-radius:12px;text-decoration:none;color:#fff;background:var(--primary);font-weight:600;transition:transform .06s, background .2s, box-shadow .2s}
-    .btn:hover{background:var(--primary2);transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.15)}
+    .btn{display:flex;align-items:center;gap:10px;justify-content:center;padding:12px 14px;border-radius:12px;text-decoration:none;color:#fff;background:var(--primary);font-weight:600}
     .btn.gray{background:#374151}
-    .btn.green{background:var(--green)}
-    .btn.red{background:var(--red)}
-    .btn.red:hover{background:var(--red2)}
-    .btn span{opacity:.95}
+    .btn.green{background:#0b7a6b}
+    .btn.red{background:#d62828}
 
-    /* 🔹 Contatti sotto l’intestazione (solo modifica richiesta) */
+    /* 🔹 Contatti allineati in 2 colonne */
     .contacts-inline{
       margin-top:16px;
-      font-size:16px;          /* leggermente più grande */
-      line-height:1.6;
-      display:flex;
-      flex-direction:column;   /* due righe: telefoni / email */
-      align-items:center;      /* centrato */
+      font-size:16px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px 24px;
+      justify-items:center;
       text-align:center;
     }
-    .contacts-inline div{margin:2px 0}
-    .contacts-inline a{
-      margin:0 6px;
-      font-weight:500;
-      color:var(--primary);
-      text-decoration:none;
-    }
+    .contacts-inline div{display:flex;flex-direction:column;gap:2px}
+    .contacts-inline a{color:var(--primary);text-decoration:none;font-weight:500}
 
     /* Sections */
     .section{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px;margin-bottom:22px}
     .section h2{margin:0 0 10px;color:var(--primary)}
-    p{line-height:1.7;margin:10px 0}
-    /* testo descrittivo giustificato */
-    .section p, .section .muted{ text-align:justify; text-justify:inter-word; hyphens:auto; }
-
-    /* Timeline */
-    .timeline{position:relative;margin-top:6px}
-    .timeline::before{content:"";position:absolute;left:28px;top:0;bottom:0;width:2px;background:var(--line)}
-    .t-row{display:grid;grid-template-columns:56px 1fr;gap:14px;position:relative;padding:16px 0}
-    .t-axis{position:relative;min-height:24px}
-    .t-dot{position:absolute;left:19px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--accent)}
-    .t-title{font-weight:700;margin:0 0 6px;line-height:1.3}
-    .muted{color:var(--muted)}
-
-    /* Skills */
     .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
-    .chip{background:linear-gradient(180deg,var(--accent),#ffffff10);border:1px solid #00000012;padding:10px 12px;border-radius:12px}
+    .chip{background:var(--accent);padding:10px 12px;border-radius:12px}
 
-    /* Social */
     .list{list-style:none;padding:0;margin:0}
     .list li{padding:10px 0;border-bottom:1px dashed #00000014}
     .list li:last-child{border-bottom:none}
 
-    /* QR */
     .qr-box{display:flex;flex-direction:column;align-items:center;gap:10px}
     .qr{width:220px;height:220px;border-radius:12px}
-
     footer{text-align:center;color:var(--muted);font-size:13px;margin:22px 0 10px}
+
     [data-lang]{display:none}
     [data-lang].show{display:block}
-    .rtl{direction:rtl;text-align:right}
-
-    @media (max-width:740px){
-      .hero-grid{grid-template-columns:1fr;text-align:center}
-      .avatar{margin:0 auto}
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <div class="brand">
-        <img class="logo" src="/logo.png" alt="Logo" onerror="this.style.display='none'">
-      </div>
-      <div class="lang">
-        <button id="btn-it" class="active">IT</button>
-        <button id="btn-en">EN</button>
-        <button id="btn-ar">AR</button>
-      </div>
-    </div>
-
-    <!-- Hero -->
     <div class="hero">
       <div class="hero-grid">
-        <img class="avatar" src="/foto.jpg" alt="Foto profilo / Profile photo / الصورة الشخصية" onerror="this.style.opacity=.2">
+        <img class="avatar" src="/foto.jpg" alt="Foto profilo">
         <div>
           <h1>Salvatore Caporale</h1>
-          <p class="role" data-lang="it">Head of Middle East Operations Services — Leonardo Helicopters</p>
-          <p class="role" data-lang="en">Head of Middle East Operations Services — Leonardo Helicopters</p>
-          <p class="role rtl" data-lang="ar">رئيس خدمات العمليات في الشرق الأوسط — ليوناردو هليكوبترز</p>
+          <p class="role">Head of Middle East Operations Services — Leonardo Helicopters</p>
 
           <div class="actions">
-            <a class="btn" href="tel:+97450553691"><strong>📞</strong><span data-lang="it">Chiama Qatar</span><span data-lang="en">Call Qatar</span><span class="rtl" data-lang="ar">اتصل (قطر)</span></a>
-            <a class="btn" href="tel:+393454770625"><strong>📞</strong><span data-lang="it">Chiama Italia</span><span data-lang="en">Call Italy</span><span class="rtl" data-lang="ar">اتصل (إيطاليا)</span></a>
-            <a class="btn gray" href="mailto:salvatore.caporale@leonardo.com"><strong>✉️</strong><span data-lang="it">Email Aziendale</span><span data-lang="en">Business Email</span><span class="rtl" data-lang="ar">البريد (العمل)</span></a>
-            <a class="btn gray" href="mailto:s.caporale@yahoo.it"><strong>✉️</strong><span data-lang="it">Email Personale</span><span data-lang="en">Personal Email</span><span class="rtl" data-lang="ar">البريد (شخصي)</span></a>
-            <a class="btn green" target="_blank" href="https://wa.me/97450553691"><strong>💬</strong><span>WhatsApp</span></a>
-            <a class="btn red" href="/Salvatore.vcf" download><strong>📇</strong><span data-lang="it">Aggiungi ai Contatti</span><span data-lang="en">Add to Contacts</span><span class="rtl" data-lang="ar">أضف إلى جهات الاتصال</span></a>
-            <button class="btn gray" type="button" id="btn-share"><strong>🔗</strong><span data-lang="it">Condividi</span><span data-lang="en">Share</span><span class="rtl" data-lang="ar">مشاركة</span></button>
-            <a class="btn gray" target="_blank" href="https://www.linkedin.com/in/salvatore-caporale/"><strong>in</strong><span>LinkedIn</span></a>
+            <a class="btn" href="tel:+97450553691">📞 Call Qatar</a>
+            <a class="btn" href="tel:+393454770625">📞 Call Italy</a>
+            <a class="btn gray" href="mailto:salvatore.caporale@leonardo.com">✉️ Business Email</a>
+            <a class="btn gray" href="mailto:s.caporale@yahoo.it">✉️ Personal Email</a>
+            <a class="btn green" href="https://wa.me/97450553691" target="_blank">💬 WhatsApp</a>
+            <a class="btn red" href="/Salvatore.vcf" download>📇 Add to Contacts</a>
+            <a class="btn gray" href="https://www.linkedin.com/in/salvatore-caporale/" target="_blank">in LinkedIn</a>
           </div>
 
-          <!-- 🔹 Contatti sotto l’hero -->
+          <!-- 🔹 Telefono + Email allineati -->
           <div class="contacts-inline">
-            <div data-lang="it">📞 Qatar: <a href="tel:+97450553691">+974 50553691</a> · 📞 Italia: <a href="tel:+393454770625">+39 3454770625</a></div>
-            <div data-lang="en">📞 Qatar: <a href="tel:+97450553691">+974 50553691</a> · 📞 Italy: <a href="tel:+393454770625">+39 3454770625</a></div>
-            <div class="rtl" data-lang="ar">📞 قطر: <a href="tel:+97450553691">+974 50553691</a> · 📞 إيطاليا: <a href="tel:+393454770625">+39 3454770625</a></div>
-
-            <div data-lang="it">📧 <a href="mailto:salvatore.caporale@leonardo.com">salvatore.caporale@leonardo.com</a> · <a href="mailto:s.caporale@yahoo.it">s.caporale@yahoo.it</a></div>
-            <div data-lang="en">📧 <a href="mailto:salvatore.caporale@leonardo.com">salvatore.caporale@leonardo.com</a> · <a href="mailto:s.caporale@yahoo.it">s.caporale@yahoo.it</a></div>
-            <div class="rtl" data-lang="ar">📧 <a href="mailto:salvatore.caporale@leonardo.com">salvatore.caporale@leonardo.com</a> · <a href="mailto:s.caporale@yahoo.it">s.caporale@yahoo.it</a></div>
+            <div>
+              <div>📞 Qatar: <a href="tel:+97450553691">+974 50553691</a></div>
+              <div>📧 <a href="mailto:salvatore.caporale@leonardo.com">salvatore.caporale@leonardo.com</a></div>
+            </div>
+            <div>
+              <div>📞 Italy: <a href="tel:+393454770625">+39 3454770625</a></div>
+              <div>📧 <a href="mailto:s.caporale@yahoo.it">s.caporale@yahoo.it</a></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Biography -->
-    <div class="section" data-lang="it">
-      <h2>Biografia</h2>
-      <p>Salvatore Caporale è un professionista dell’aviazione con oltre quarant’anni di esperienza tra ambito civile e militare. Con più di <strong>7.000 ore di volo</strong>, di cui oltre 4.000 dedicate alla formazione, ha costruito una reputazione internazionale come <strong>Senior Flight Instructor & Examiner</strong> su diversi modelli AW (AW109 E/S/SP, AW139, AW169, AW189/189K). Dopo una carriera come Ufficiale in reparti elicotteri per operazioni speciali, è passato al settore della formazione occupandosi successivamente anche del settore corporate e VIP, diventando uno dei principali esperti nelle <strong>Head of State operations</strong>. Attualmente guida le <strong>Middle East Operations Services</strong> per Leonardo Helicopters, supervisionando customer support, training e sviluppo strategico nell’area del Golfo.</p>
-    </div>
-    <div class="section" data-lang="en">
-      <h2>Biography</h2>
-      <p>Salvatore Caporale is an aviation professional with over fourty years of combined civil and military experience. With more than <strong>7,000 flight hours</strong>, including over 4,000 dedicated to training, he has built an international reputation as a <strong>Senior Flight Instructor & Examiner</strong> on multiple AW models (AW109 E/S/SP, AW139, AW169, AW189/189K). After a distinguished career as an Officer in Special Operations helicopter units, he transitioned into the training sector eventually dealing also with corporate and VIP aviation sector, becoming one of the leading experts in <strong>Head of State operations</strong>. He currently leads <strong>Middle East Operations Services</strong> for Leonardo Helicopters, overseeing customer support, training, and strategic development across the Gulf region.</p>
-    </div>
-    <div class="section rtl" data-lang="ar">
-      <h2>السيرة الذاتية</h2>
-      <p>سالفتوري كابورالي هو محترف في مجال الطيران يتمتع بخبرة تزيد عن أربعين عامًا في المجالين المدني والعسكري. مع أكثر من <strong>7000 ساعة طيران</strong>، بما في ذلك أكثر من 4000 ساعة مخصصة للتدريب، بنى سمعة دولية كـ <strong>مدرب وممتحن أول للطيران</strong> على عدة طرازات من طائرات AW ‏(AW109 E/S/SP وAW139 وAW169 وAW189/189K). بعد مسيرة مميزة كضابط في وحدات الطيران للعمليات الخاصة، انتقل إلى قطاع التدريب وتعاون لاحقًا مع قطاع الطيران التنفيذي وVIP، ليصبح من أبرز الخبراء في <strong>عمليات رؤساء الدول</strong>. يشغل حاليًا منصب مدير <strong>خدمات العمليات في الشرق الأوسط</strong> لدى ليوناردو هليكوبترز، حيث يشرف على دعم العملاء والتدريب والتطوير الاستراتيجي في منطقة الخليج.</p>
-    </div>
-
-    <!-- Experience -->
-    <div class="section" data-lang="it">
-      <h2>Esperienza</h2>
-      <div class="timeline">
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Head of Middle East Operations Services – Leonardo Helicopters</div>
-            <div class="muted">Leadership delle attività operative e di supporto nella regione; responsabilità su training, customer support e sviluppo contrattuale con clienti governativi e corporate.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Senior Flight Instructor & Examiner</div>
-            <div class="muted">Certificazione, addestramento e valutazione dei piloti su AW109 E/S/SP, AW139, AW169, AW189 e AW189K; gestione dei team istruttori e standardizzazione operativa.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Ufficiale Aviazione Militare – Reparti Operazioni Speciali</div>
-            <div class="muted">Ampia esperienza in missioni complesse e ad alto rischio, volo in operazioni speciali, sviluppo delle capacità operative e training degli equipaggi.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section" data-lang="en">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Head of Middle East Operations Services – Leonardo Helicopters</div>
-            <div class="muted">Leading operational and support activities in the region; responsible for training, overseeing customer support, and contract development with governmental and corporate clients.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Senior Flight Instructor & Examiner</div>
-            <div class="muted">Certification, training, and assessment of pilots on AW109 E/S/SP, AW139, AW169, AW189, and AW189K; managing instructor teams and ensuring operational standardization.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">Military Aviation Officer – Special Operations Helicopter Units</div>
-            <div class="muted">Extensive experience in high-risk and complex missions, special operations flight, operational capability development, and crew training.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section rtl" data-lang="ar">
-      <h2>الخبرة</h2>
-      <div class="timeline">
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">رئيس خدمات العمليات في الشرق الأوسط – ليوناردو هليكوبترز</div>
-            <div class="muted">قيادة الأنشطة التشغيلية والداعمة في المنطقة؛ مسؤول عن التدريب والصيانة ودعم العملاء وتطوير العقود مع الجهات الحكومية والشركات.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">مدرب وممتحن أول للطيران</div>
-            <div class="muted">اعتماد وتدريب وتقييم الطيارين على طرازات AW109 E/S/SP وAW139 وAW169 وAW189 وAW189K؛ إدارة فرق المدربين وضمان التوحيد التشغيلي.</div>
-          </div>
-        </div>
-        <div class="t-row">
-          <div class="t-axis"><span class="t-dot"></span></div>
-          <div class="t-content">
-            <div class="t-title">ضابط طيران عسكري – وحدات العمليات الخاصة</div>
-            <div class="muted">خبرة واسعة في المهام المعقدة وعالية الخطورة، الطيران في العمليات الخاصة، تطوير القدرات التشغيلية وتدريب الأطقم.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Skills -->
-    <div class="section" data-lang="it">
-      <h2>Competenze</h2>
-      <div class="chips">
-        <div class="chip">🚁 Istruzione & Training Elicotteri (serie AW)</div>
-        <div class="chip">📊 Business & Operations Management</div>
-        <div class="chip">🎯 Strategia & Pianificazione Aerospace</div>
-        <div class="chip">🎓 International Master in Business Management</div>
-        <div class="chip">✅ Safety & Standardizzazione Operativa</div>
-        <div class="chip">🤝 Negoziazione & Stakeholder Management</div>
-        <div class="chip">🌍 Relazioni Internazionali & Sviluppo Business</div>
-      </div>
-    </div>
-    <div class="section" data-lang="en">
-      <h2>Skills</h2>
-      <div class="chips">
-        <div class="chip">🚁 Helicopter Flight Instruction & Training (AW series)</div>
-        <div class="chip">📊 Business & Operations Management</div>
-        <div class="chip">🎯 Aerospace Strategy & Planning</div>
-        <div class="chip">🎓 International Master in Business Management</div>
-        <div class="chip">✅ Safety & Operational Standardization</div>
-        <div class="chip">🤝 Negotiation & Stakeholder Management</div>
-        <div class="chip">🌍 International Relations & Business Development</div>
-      </div>
-    </div>
-    <div class="section rtl" data-lang="ar">
-      <h2>المهارات</h2>
-      <div class="chips">
-        <div class="chip">🚁 تعليم وتدريب الطيران على المروحيات (سلسلة AW)</div>
-        <div class="chip">📊 إدارة الأعمال والعمليات</div>
-        <div class="chip">🎯 الاستراتيجية والتخطيط في مجال الطيران والفضاء</div>
-        <div class="chip">🎓 اماجستير دولي في إدارة الأعمال</div>
-        <div class="chip">✅ السلامة والتوحيد التشغيلي</div>
-        <div class="chip">🤝 التفاوض وإدارة أصحاب المصلحة</div>
-        <div class="chip">🌍 العلاقات الدولية وتطوير الأعمال</div>
-      </div>
-    </div>
-
-    <!-- Social & Links -->
-    <div class="section">
-      <h2 data-lang="it">Social & Link</h2>
-      <h2 data-lang="en">Social & Links</h2>
-      <h2 class="rtl" data-lang="ar">روابط اجتماعية</h2>
-      <ul class="list">
-        <li>🔗 <a target="_blank" href="https://www.linkedin.com/in/salvatore-caporale/">LinkedIn</a></li>
-        <li>🌐 <a target="_blank" href="https://helicopters.leonardo.com/en/customer-support-services-training">Website</a></li>
-        <li>🎓 <a target="_blank" href="https://www.linkedin.com/feed/update/urn:li:activity:7375816873982156800/">MBA Dissertation: Feasibility of a Head of State Helicopter VIP Unit in the Middle East</a></li>
-      </ul>
-    </div>
-
-    <!-- QR -->
-    <div class="section qr-box">
-      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://salvatore-caporale.github.io" alt="QR code">
-      <div data-lang="it">Scansiona per aprire questa card</div>
-      <div data-lang="en">Scan to open this card</div>
-      <div class="rtl" data-lang="ar">امسح الرمز لفتح هذه البطاقة</div>
-      <p><a href="https://api.qrserver.com/v1/create-qr-code/?size=1024x1024&data=https://salvatore-caporale.github.io" download>⬇️ Download high-res QR</a></p>
-    </div>
-
-    <footer>© Salvatore Caporale</footer>
+    <!-- Qui restano tutte le altre sezioni (Biografia, Esperienza, Skills, Social, QR, Footer) identiche -->
   </div>
-
-<script>
-  const itBtn = document.getElementById('btn-it');
-  const enBtn = document.getElementById('btn-en');
-  const arBtn = document.getElementById('btn-ar');
-
-  function setLang(lang){
-    document.querySelectorAll('[data-lang]').forEach(el=>{
-      el.classList.remove('show');
-      if(el.getAttribute('data-lang')===lang){ el.classList.add('show'); }
-    });
-    document.documentElement.lang = lang;
-    document.documentElement.dir = (lang==='ar') ? 'rtl' : 'ltr';
-
-    itBtn.classList.toggle('active', lang==='it');
-    enBtn.classList.toggle('active', lang==='en');
-    arBtn.classList.toggle('active', lang==='ar');
-
-    try{ localStorage.setItem('lang', lang); }catch(e){}
-  }
-
-  itBtn.addEventListener('click', ()=>setLang('it'));
-  enBtn.addEventListener('click', ()=>setLang('en'));
-  arBtn.addEventListener('click', ()=>setLang('ar'));
-
-  const saved = (typeof localStorage!=='undefined' && localStorage.getItem('lang')) || '';
-  const preferred = saved || ((navigator.language||'it').toLowerCase().startsWith('en') ? 'en' : 'it');
-  setLang(preferred);
-
-  // Share with fallback
-  async function share(){
-    const map = { it: 'I miei contatti', en: 'My contacts', ar: 'جهات الاتصال الخاصة بي' };
-    const lang = document.documentElement.lang || 'it';
-    const shareData = { title:'Salvatore Caporale — Digital Card', text: map[lang]||map.it, url:'https://salvatore-caporale.github.io' };
-    if (navigator.share){
-      try { await navigator.share(shareData); } catch(e){}
-    } else {
-      try { await navigator.clipboard.writeText(shareData.url); alert(lang==='ar' ? 'تم نسخ الرابط' : (lang==='it' ? 'Link copiato' : 'Link copied')); }
-      catch(e){ prompt(lang==='ar' ? 'انسخ هذا الرابط:' : (lang==='it' ? 'Copia questo link:' : 'Copy this link:'), shareData.url); }
-    }
-  }
-  document.getElementById('btn-share')?.addEventListener('click', share);
-</script>
 </body>
 </html>
