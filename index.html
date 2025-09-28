@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="it" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salvatore Caporale — Digital Card</title>
+  <meta name="description" content="Executive digital business card — IT / EN / AR">
+  <meta name="theme-color" content="#0a4dad">
+  <style>
+    :root{
+      --bg:#f6f8ff; --bg2:#eef3ff; --card:#fff; --text:#1f2937; --muted:#6b7280;
+      --primary:#0a4dad; --primary2:#1e6bfd; --accent:#e6f0ff; --radius:20px;
+      --shadow:0 12px 28px rgba(3,24,73,.12);
+      --red:#d62828; --red2:#e63946; --green:#0b7a6b; --line:#e5e7eb;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0f131d; --bg2:#0b1220; --card:#131a28; --text:#e5e7eb; --muted:#b6c2d0;
+        --primary:#3b82f6; --primary2:#60a5fa; --accent:#0f1e36; --line:#1f2937;
+        --shadow:0 14px 30px rgba(0,0,0,.45);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 100% -20%,var(--bg2),transparent 60%),
+        radial-gradient(1000px 500px at 0% 120%,var(--accent),transparent 50%),
+        var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Roboto,'Segoe UI',Tahoma,Arial,sans-serif;
+    }
+    .container{max-width:980px;margin:0 auto;padding:28px 18px}
+    .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{height:44px;max-width:180px;object-fit:contain}
+    .lang{display:flex;gap:8px}
+    .lang button{border:1px solid #00000022;background:var(--card);color:var(--text);padding:8px 12px;border-radius:999px;cursor:pointer}
+    .lang button.active{background:var(--primary);color:#fff;border-color:transparent}
+    .hero{background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:28px 28px 20px;margin-bottom:26px}
+    .hero-grid{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center}
+    .avatar{width:140px;height:140px;border-radius:999px;object-fit:cover;background:var(--accent);border:4px solid #ffffff20;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    h1{font-size:30px;margin:0}
+    .role{margin:6px 0 0;color:var(--muted)}
+    .actions{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .btn{display:flex;align-items:center;gap:10px;justify-content:center;padding:12px 14px;border-radius:12px;text-decoration:none;color:#fff;background:var(--primary);font-weight:600;transition:transform .06s, background .2s, box-shadow .2s}
+    .btn:hover{background:var(--primary2);transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.15)}
+    .btn.gray{background:#374151}
+    .btn.green{background:var(--green)}
+    .btn.red{background:var(--red)}
+    .btn.red:hover{background:var(--red2)}
+    .btn span{opacity:.95}
+
+    /* contacts-visible updated */
+    .contacts-visible {
+      margin-top: 18px;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    .contacts-visible div {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+    .contacts-visible a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .section{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px;margin-bottom:22px;text-align:justify}
+    .section h2{margin:0 0 10px;color:var(--primary)}
+    p{line-height:1.7;margin:10px 0}
+    .qr-box{display:flex;flex-direction:column;align-items:center;gap:10px}
+    .qr{width:220px;height:220px;border-radius:12px}
+    footer{text-align:center;color:var(--muted);font-size:13px;margin:22px 0 10px}
+    [data-lang]{display:none}
+    [data-lang].show{display:block}
+    .rtl{direction:rtl;text-align:right}
+    @media (max-width:740px){
+      .hero-grid{grid-template-columns:1fr;text-align:center}
+      .avatar{margin:0 auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">
+        <img class="logo" src="/logo.png" alt="Logo" onerror="this.style.display='none'">
+      </div>
+      <div class="lang">
+        <button id="btn-it" class="active">IT</button>
+        <button id="btn-en">EN</button>
+        <button id="btn-ar">AR</button>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-grid">
+        <img class="avatar" src="/foto.jpg" alt="Foto profilo / Profile photo / الصورة الشخصية" onerror="this.style.opacity=.2">
+        <div>
+          <h1>Salvatore Caporale</h1>
+          <p class="role" data-lang="it">Head of Middle East Operations Services — Leonardo Helicopters</p>
+          <p class="role" data-lang="en">Head of Middle East Operations Services — Leonardo Helicopters</p>
+          <p class="role rtl" data-lang="ar">رئيس خدمات العمليات في الشرق الأوسط — ليوناردو هليكوبترز</p>
+
+          <div class="actions">
+            <a class="btn" href="tel:+97450553691">📞 <span data-lang="it">Chiama Qatar</span><span data-lang="en">Call Qatar</span><span class="rtl" data-lang="ar">اتصل (قطر)</span></a>
+            <a class="btn" href="tel:+393454770625">📞 <span data-lang="it">Chiama Italia</span><span data-lang="en">Call Italy</span><span class="rtl" data-lang="ar">اتصل (إيطاليا)</span></a>
+            <a class="btn gray" href="mailto:salvatore.caporale@leonardo.com">✉️ <span data-lang="it">Email Aziendale</span><span data-lang="en">Business Email</span><span class="rtl" data-lang="ar">البريد (العمل)</span></a>
+            <a class="btn gray" href="mailto:s.caporale@yahoo.it">✉️ <span data-lang="it">Email Personale</span><span data-lang="en">Personal Email</span><span class="rtl" data-lang="ar">البريد (شخصي)</span></a>
+            <a class="btn green" target="_blank" href="https://wa.me/97450553691">💬 WhatsApp</a>
+            <a class="btn red" href="/Salvatore.vcf" download>📇 <span data-lang="it">Aggiungi ai Contatti</span><span data-lang="en">Add to Contacts</span><span class="rtl" data-lang="ar">أضف إلى جهات الاتصال</span></a>
+            <button class="btn gray" type="button" id="btn-share">🔗 <span data-lang="it">Condividi</span><span data-lang="en">Share</span><span class="rtl" data-lang="ar">مشاركة</span></button>
+            <a class="btn gray" target="_blank" href="https://www.linkedin.com/in/salvatore-caporale/">in LinkedIn</a>
+          </div>
+
+          <!-- Contacts visible -->
+          <div class="contacts-visible">
+            <div>
+              📞 Qatar: <a href="tel:+97450553691">+974 50553691</a> · 📞 Italy: <a href="tel:+393454770625">+39 3454770625</a>
+            </div>
+            <div>
+              📧 <a href="mailto:salvatore.caporale@leonardo.com">salvatore.caporale@leonardo.com</a> · <a href="mailto:s.caporale@yahoo.it">s.caporale@yahoo.it</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>© Salvatore Caporale</footer>
+  </div>
+</body>
+</html>
