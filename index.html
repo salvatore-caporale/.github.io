@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a4dad">
   <style>
     :root{
-      --bg:#f5f7fb; --panel:#0c1a33; --card:#ffffff; --text:#111827; --muted:#6b7280;
+      --bg:#f6f7fb; --panel:#0f172a; --card:#ffffff; --text:#0b1220; --muted:#64748b;
       --primary:#0a4dad; --primary2:#1e6bfd; --accent:#eaf1ff;
       --line:#e5e7eb; --shadow:0 12px 28px rgba(3,24,73,.12);
       --green:#0b7a6b; --red:#d62828; --red2:#e63946;
@@ -16,7 +16,7 @@
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0b1220; --panel:#060b14; --card:#101827; --text:#e5e7eb; --muted:#b6c2d0;
+        --bg:#0b1220; --panel:#060b14; --card:#0f1624; --text:#e5e7eb; --muted:#b6c2d0;
         --primary:#3b82f6; --primary2:#60a5fa; --accent:#0f1e36; --line:#1f2937;
         --shadow:0 14px 30px rgba(0,0,0,.5);
       }
@@ -24,7 +24,6 @@
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Roboto,'Segoe UI',Tahoma,Arial,sans-serif}
 
-    /* Layout a due colonne */
     .wrap{max-width:1180px;margin:0 auto;padding:18px}
     .grid{display:grid;grid-template-columns:320px 1fr;gap:18px}
 
@@ -49,10 +48,22 @@
     .btn.red:hover{background:var(--red2)}
     .btn span{opacity:.95}
 
-    .contacts-box{background:#ffffff10;border:1px solid #ffffff26;border-radius:14px;padding:12px;margin-top:14px}
+    /* CONTACTS — fix overlap */
+    .contacts-box{background:#ffffff10;border:1px solid #ffffff26;border-radius:14px;padding:14px;margin-top:14px;line-height:1.5}
     .contacts-title{color:#cbd5e1;font-size:13px;margin:0 0 8px}
-    .contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
-    .contacts-col{display:flex;flex-direction:column;gap:6px}
+    .contacts-grid{
+      display:grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr); /* <— evita overflow */
+      column-gap:24px;
+      row-gap:10px;
+      align-items:start;
+    }
+    .contacts-col{
+      display:flex;flex-direction:column;gap:6px;
+      min-width:0;                       /* <— permette al contenuto di restringersi */
+      overflow-wrap:anywhere;            /* <— spezza le email lunghe */
+      word-break:break-word;
+    }
     .contacts-col a{color:#e3f2ff;text-decoration:none}
     .contacts-col a:hover{text-decoration:underline}
     .contacts-col .lbl{color:#9fb4d6;font-size:13px}
@@ -65,8 +76,7 @@
     .card{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:22px}
     .card h2{margin:0 0 10px;color:var(--primary)}
     p{line-height:1.75;margin:10px 0}
-    /* testo giustificato in tutte le lingue */
-    .card p, .card .muted{ text-align:justify; text-justify:inter-word; hyphens:auto; }
+    .card p, .card .muted{text-align:justify;text-justify:inter-word;hyphens:auto}
 
     /* Timeline */
     .timeline{position:relative;margin-top:6px}
@@ -81,14 +91,12 @@
     .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
     .chip{background:linear-gradient(180deg,var(--accent),#ffffff10);border:1px solid #00000012;padding:10px 12px;border-radius:12px}
 
-    /* Social */
     .list{list-style:none;margin:0;padding:0}
     .list li{padding:10px 0;border-bottom:1px dashed var(--line)}
     .list li:last-child{border-bottom:none}
 
     footer{margin:20px 0 10px;text-align:center;color:var(--muted);font-size:13px}
 
-    /* Lingue */
     [data-lang]{display:none}
     [data-lang].show{display:block}
     .rtl{direction:rtl;text-align:right}
@@ -96,7 +104,6 @@
     @media (max-width:980px){
       .grid{grid-template-columns:1fr}
       .side{position:static}
-      .contacts-grid{grid-template-columns:1fr 1fr}
     }
     @media (max-width:560px){
       .contacts-grid{grid-template-columns:1fr}
