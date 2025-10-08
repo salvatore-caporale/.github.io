@@ -47,21 +47,22 @@
     .btn.red{background:var(--red)}
     .btn.red:hover{background:var(--red2)}
     .btn span{opacity:.95}
+    .btn svg{width:18px;height:18px;flex:0 0 auto}
 
     /* CONTACTS — fix overlap */
     .contacts-box{background:#ffffff10;border:1px solid #ffffff26;border-radius:14px;padding:14px;margin-top:14px;line-height:1.5}
     .contacts-title{color:#cbd5e1;font-size:13px;margin:0 0 8px}
     .contacts-grid{
       display:grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr); /* <— evita overflow */
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
       column-gap:24px;
       row-gap:10px;
       align-items:start;
     }
     .contacts-col{
       display:flex;flex-direction:column;gap:6px;
-      min-width:0;                       /* <— permette al contenuto di restringersi */
-      overflow-wrap:anywhere;            /* <— spezza le email lunghe */
+      min-width:0;
+      overflow-wrap:anywhere;
       word-break:break-word;
     }
     .contacts-col a{color:#e3f2ff;text-decoration:none}
@@ -131,13 +132,53 @@
         <p class="role rtl" data-lang="ar">رئيس خدمات العمليات في الشرق الأوسط — ليوناردو هليكوبترز</p>
 
         <div class="actions">
-          <a class="btn" href="tel:+97450553691"><strong>📞</strong><span data-lang="it">Chiama Qatar</span><span data-lang="en">Call Qatar</span><span class="rtl" data-lang="ar">اتصل (قطر)</span></a>
-          <a class="btn" href="tel:+393454770625"><strong>📞</strong><span data-lang="it">Chiama Italia</span><span data-lang="en">Call Italy</span><span class="rtl" data-lang="ar">اتصل (إيطاليا)</span></a>
-          <a class="btn gray" href="mailto:salvatore.caporale@leonardo.com"><strong>✉️</strong><span data-lang="it">Email Aziendale</span><span data-lang="en">Business Email</span><span class="rtl" data-lang="ar">البريد (العمل)</span></a>
-          <a class="btn gray" href="mailto:s.caporale@yahoo.it"><strong>✉️</strong><span data-lang="it">Email Personale</span><span data-lang="en">Personal Email</span><span class="rtl" data-lang="ar">البريد (شخصي)</span></a>
-          <a class="btn green" target="_blank" href="https://wa.me/97450553691"><strong>💬</strong><span>WhatsApp</span></a>
-          <a class="btn red" href="/Salvatore.vcf" download><strong>📇</strong><span data-lang="it">Aggiungi ai Contatti</span><span data-lang="en">Add to Contacts</span><span class="rtl" data-lang="ar">أضف إلى جهات الاتصال</span></a>
-          <a class="btn gray" target="_blank" href="https://www.linkedin.com/in/salvatore-caporale/"><strong>in</strong><span>LinkedIn</span></a>
+          <!-- 🔴 RED CONTACT BUTTON FIRST with SVG icon -->
+          <a class="btn red" href="/Salvatore.vcf" download>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+              <rect x="7" y="7" width="6" height="4" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 14h10M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span data-lang="it">Aggiungi ai Contatti</span>
+            <span data-lang="en">Add to Contacts</span>
+            <span class="rtl" data-lang="ar">أضف إلى جهات الاتصال</span>
+          </a>
+
+          <a class="btn" href="tel:+97450553691">
+            <strong>📞</strong>
+            <span data-lang="it">Chiama Qatar</span>
+            <span data-lang="en">Call Qatar</span>
+            <span class="rtl" data-lang="ar">اتصل (قطر)</span>
+          </a>
+
+          <a class="btn" href="tel:+393454770625">
+            <strong>📞</strong>
+            <span data-lang="it">Chiama Italia</span>
+            <span data-lang="en">Call Italy</span>
+            <span class="rtl" data-lang="ar">اتصل (إيطاليا)</span>
+          </a>
+
+          <a class="btn gray" href="mailto:salvatore.caporale@leonardo.com">
+            <strong>✉️</strong>
+            <span data-lang="it">Email Aziendale</span>
+            <span data-lang="en">Business Email</span>
+            <span class="rtl" data-lang="ar">البريد (العمل)</span>
+          </a>
+
+          <a class="btn gray" href="mailto:s.caporale@yahoo.it">
+            <strong>✉️</strong>
+            <span data-lang="it">Email Personale</span>
+            <span data-lang="en">Personal Email</span>
+            <span class="rtl" data-lang="ar">البريد (شخصي)</span>
+          </a>
+
+          <a class="btn green" target="_blank" href="https://wa.me/97450553691">
+            <strong>💬</strong><span>WhatsApp</span>
+          </a>
+
+          <a class="btn gray" target="_blank" href="https://www.linkedin.com/in/salvatore-caporale/">
+            <strong>in</strong><span>LinkedIn</span>
+          </a>
         </div>
 
         <!-- Contatti allineati (Qatar / Italy) -->
