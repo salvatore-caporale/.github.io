@@ -47,7 +47,7 @@
     .btn.red{background:var(--red)}
     .btn.red:hover{background:var(--red2)}
     .btn span{opacity:.95}
-    .btn .icon{width:18px;height:18px;flex:0 0 auto;display:block;filter:invert(100%) brightness(110%)} /* rende l'SVG chiaro su sfondo rosso */
+    .btn svg{width:18px;height:18px;flex:0 0 auto}
 
     /* CONTACTS — fix overlap */
     .contacts-box{background:#ffffff10;border:1px solid #ffffff26;border-radius:14px;padding:14px;margin-top:14px;line-height:1.5}
@@ -59,7 +59,12 @@
       row-gap:10px;
       align-items:start;
     }
-    .contacts-col{display:flex;flex-direction:column;gap:6px;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+    .contacts-col{
+      display:flex;flex-direction:column;gap:6px;
+      min-width:0;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
     .contacts-col a{color:#e3f2ff;text-decoration:none}
     .contacts-col a:hover{text-decoration:underline}
     .contacts-col .lbl{color:#9fb4d6;font-size:13px}
@@ -127,9 +132,13 @@
         <p class="role rtl" data-lang="ar">رئيس خدمات العمليات في الشرق الأوسط — ليوناردو هليكوبترز</p>
 
         <div class="actions">
-          <!-- 🔴 RED CONTACT BUTTON FIRST with external SVG icon -->
+          <!-- 🔴 RED CONTACT BUTTON FIRST with SVG icon -->
           <a class="btn red" href="/Salvatore.vcf" download>
-            <img class="icon" src="/icons/contact.svg" alt="" aria-hidden="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+              <rect x="7" y="7" width="6" height="4" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 14h10M7 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <span data-lang="it">Aggiungi ai Contatti</span>
             <span data-lang="en">Add to Contacts</span>
             <span class="rtl" data-lang="ar">أضف إلى جهات الاتصال</span>
